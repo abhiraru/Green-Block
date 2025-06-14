@@ -1,0 +1,19 @@
+/* src/App.css */
+.App {
+  padding: 2rem;
+}
+body {
+  margin: 0;
+}
+.game-over-screen {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  z-index: 3;
+}

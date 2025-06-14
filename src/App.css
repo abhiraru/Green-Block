@@ -1,6 +1,10 @@
 /* src/App.css */
 .App {
-  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 0; /* reset padding */
 }
 body {
   margin: 0;
@@ -16,4 +20,12 @@ body {
   padding: 2rem;
   border-radius: 10px;
   z-index: 3;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden; /* optional: disables vertical scroll if not needed */
+  touch-action: none; /* optional: prevents iOS double-tap zoom & scrolling */
 }

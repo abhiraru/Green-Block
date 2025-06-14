@@ -1,8 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import { useGame } from '../GameContext';
 import './Dino.css';
 
-const Dino = () => {
+const Dino = forwardRef((props, ref) => {
   const dinoRef = useRef(null);
   const [isJumping, setIsJumping] = useState(false);
   const { setDinoRef, gameOver } = useGame();
@@ -11,18 +17,21 @@ const Dino = () => {
     setDinoRef(dinoRef);
   }, [setDinoRef]);
 
-  const triggerJump = () => {
+  const jump = () => {
     if (!isJumping && !gameOver) {
       setIsJumping(true);
       setTimeout(() => setIsJumping(false), 600);
     }
   };
 
+  useImperativeHandle(ref, () => ({
+    jump,
+  }));
+
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.code === 'Space' && !isJumping && !gameOver) {
-        setIsJumping(true);
-        setTimeout(() => setIsJumping(false), 600);
+      if (e.code === 'Space') {
+        jump();
       }
     };
 
@@ -30,14 +39,7 @@ const Dino = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isJumping, gameOver]);
 
-  return (
-    <div
-      ref={dinoRef}
-      className={`dino ${isJumping ? 'jump' : ''}`}
-      onTouchStart={triggerJump}
-      onClick={triggerJump}
-    ></div>
-  );
-};
+  return <div ref={dinoRef} className={`dino ${isJumping ? 'jump' : ''}`}></div>;
+});
 
 export default Dino;

@@ -8,19 +8,30 @@ import Background from './components/Background';
 
 const App = () => {
   const { gameOver, resetGame } = useGame();
+  const dinoRef = React.useRef();
 
   const handleRestart = () => {
-    resetGame(); // reset gameOver to false
-    window.location.reload(); // easiest full reset for now
+    resetGame();
+    window.location.reload();
+  };
+
+  // Trigger jump by calling Dino's jump method
+  const triggerJump = () => {
+    if (dinoRef.current && typeof dinoRef.current.jump === 'function') {
+      dinoRef.current.jump();
+    }
   };
 
   return (
-    <div className="game-container">
+    <div
+      className="game-container"
+      onTouchStart={triggerJump}
+      onClick={triggerJump}
+    >
       <Background />
       <Score />
-      <Dino />
+      <Dino ref={dinoRef} />
       <Cactus />
-
       {gameOver && (
         <div className="game-over-screen">
           <h1>Game Over</h1>

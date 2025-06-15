@@ -54,7 +54,14 @@ const Dino = forwardRef((props, ref) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isJumping, gameOver]);
 
-  return <div ref={dinoRef} className={`dino ${isJumping ? 'jump' : ''}`} style={isJumping ? { animationDuration: `${jumpDuration}ms` } : {}}></div>;
+  // return <div ref={dinoRef} className={`dino ${isJumping ? 'jump' : ''}`} style={isJumping ? { animationDuration: `${jumpDuration}ms` } : {}}></div>;
+  return (
+  <div
+    ref={dinoRef}
+    className={`dino ${isJumping ? 'jump' : ''} ${gameOver ? 'broken' : ''}`}
+    style={isJumping ? { animationDuration: `${jumpDuration}ms` } : {}}
+  ></div>
+);
 });
 
 export default Dino;

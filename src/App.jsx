@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dino from './components/Dino';
 import Cactus from './components/Cactus';
 import { useGame } from './GameContext';
@@ -7,10 +7,32 @@ import Score from './components/Score';
 import Background from './components/Background';
 
 const App = () => {
-  const { gameOver, resetGame } = useGame();
+  const { gameOver, resetGame, score } = useGame();
   const dinoRef = React.useRef();
   const gameOverSoundRef = React.useRef(null);
   const prevGameOverRef = React.useRef(false);
+  const achievementSoundRef = React.useRef(null);
+
+  const [ milestoneMessage, setMilestoneMessage ] = useState('');
+  const [ nextMilestone, setNextMilestone ] = useState(100);
+
+  React.useEffect(() => {
+    achievementSoundRef.current = new Audio('/achievement.mp3');
+  });
+
+  React.useEffect(() => {
+    if (score >= nextMilestone) {
+      setMilestoneMessage(`🎉 ${nextMilestone} Points!`);
+      setNextMilestone((prev) => prev + 100);
+      achievementSoundRef.current.currentTime = 0;
+      achievementSoundRef.current.play().catch((e) => {
+        console.warn('Jump sound failed:', e)
+      });
+      setTimeout(() => {
+        setMilestoneMessage('');
+      }, 1500);
+    }
+  },[score, nextMilestone]);
 
 
   React.useEffect(() => {
@@ -50,6 +72,9 @@ const App = () => {
       <Score />
       <Dino ref={dinoRef} />
       <Cactus />
+      {milestoneMessage && (
+        <div className="milestone-popup">{milestoneMessage}</div>
+      )}
       {gameOver && (
         <div className="game-over-screen">
           <h1>Game Over</h1>

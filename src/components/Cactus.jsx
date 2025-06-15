@@ -84,7 +84,7 @@ const Cactus = () => {
       }
     };
 
-    const collisionInterval = setInterval(checkCollision, 25);
+    const collisionInterval = setInterval(checkCollision, 10);
     return () => clearInterval(collisionInterval);
   }, [cactuses, dinoRef, setGameOver]);
 

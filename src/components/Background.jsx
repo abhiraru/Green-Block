@@ -10,7 +10,7 @@ const Background = () => {
       const id = Date.now();
       const top = Math.random() * 100; // Random vertical position
       setClouds((prev) => [...prev, { id, left: 1000, top }]);
-    }, 4000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -23,7 +23,7 @@ const Background = () => {
           .map((c) => ({ ...c, left: c.left - 0.5 }))
           .filter((c) => c.left > -200)
       );
-    }, 30);
+    }, 10);
 
     return () => clearInterval(move);
   }, []);

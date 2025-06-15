@@ -14,7 +14,32 @@
   border-radius: 60px;
   opacity: 0.7;
   animation: float 2s ease-in-out infinite;
+  z-index: 1;
 }
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: white;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 70px;
+  height: 70px;
+  left: -30px;
+  top: -20px;
+}
+
+.cloud::after {
+  width: 70px;
+  height: 70px;
+  right: -30px;
+  top: -20px;
+}
+
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }

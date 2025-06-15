@@ -5,9 +5,10 @@ import './Cactus.css';
 const Cactus = () => {
   const { dinoRef, setGameOver, gameOver } = useGame();
   const [cactuses, setCactuses] = useState([]);
-  const speedRef = useRef(5);
+  const speedRef = useRef(3);
   const spawnTimer = useRef(null);
   const moveTimer = useRef(null);
+  const spawnIntervalRef = useRef(3000);
 
   // Spawn a new cactus
   const spawnCactus = () => {
@@ -32,13 +33,20 @@ const Cactus = () => {
 
   // Spawn new cactus periodically
   useEffect(() => {
-    if (gameOver) return;
+      const spawn = () => {
+    spawnCactus();
 
-    spawnTimer.current = setInterval(() => {
-      spawnCactus();
-    }, 1500);
+    // Reduce the spawn interval down to a minimum value
+    if (spawnIntervalRef.current > 1000) {
+      spawnIntervalRef.current -= 100; // Faster over time
+    }
 
-    return () => clearInterval(spawnTimer.current);
+    spawnTimer.current = setTimeout(spawn, spawnIntervalRef.current);
+  };
+
+  spawn(); // Initial call
+
+  return () => clearTimeout(spawnTimer.current);
   }, [gameOver]);
 
   
@@ -47,7 +55,7 @@ const Cactus = () => {
 
     const speedUp = setInterval(() => {
       speedRef.current += 0.2;
-    }, 3000); // Increase every 3 seconds
+    }, 2000); // Increase every 2 seconds
 
     return () => clearInterval(speedUp);
   }, [gameOver]);

@@ -3,9 +3,8 @@ import { useGame } from '../GameContext';
 import './Cactus.css';
 
 const Cactus = () => {
-  const { dinoRef, setGameOver, gameOver } = useGame();
+  const { dinoRef, setGameOver, gameOver, speedRef } = useGame();
   const [cactuses, setCactuses] = useState([]);
-  const speedRef = useRef(3);
   const spawnTimer = useRef(null);
   const moveTimer = useRef(null);
   const spawnIntervalRef = useRef(3000);
@@ -38,7 +37,7 @@ const Cactus = () => {
 
     // Reduce the spawn interval down to a minimum value
     if (spawnIntervalRef.current > 1000) {
-      spawnIntervalRef.current -= 100; // Faster over time
+      spawnIntervalRef.current -= 90; // Faster over time
     }
 
     spawnTimer.current = setTimeout(spawn, spawnIntervalRef.current);
@@ -85,7 +84,7 @@ const Cactus = () => {
       }
     };
 
-    const collisionInterval = setInterval(checkCollision, 20);
+    const collisionInterval = setInterval(checkCollision, 25);
     return () => clearInterval(collisionInterval);
   }, [cactuses, dinoRef, setGameOver]);
 

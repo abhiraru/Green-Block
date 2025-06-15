@@ -9,6 +9,24 @@ import Background from './components/Background';
 const App = () => {
   const { gameOver, resetGame } = useGame();
   const dinoRef = React.useRef();
+  const gameOverSoundRef = React.useRef(null);
+  const prevGameOverRef = React.useRef(false);
+
+
+  React.useEffect(() => {
+    gameOverSoundRef.current = new Audio('/gameover.mp3')
+  },[]);
+  React.useEffect(() => {
+      if (!prevGameOverRef.current && gameOver) {
+        // Game just ended
+        gameOverSoundRef.current.currentTime = 0;
+        gameOverSoundRef.current.play().catch((e) =>
+          console.warn('Game over sound failed:', e)
+        );
+      }
+      prevGameOverRef.current = gameOver;
+    }, [gameOver]);
+
 
   const handleRestart = () => {
     resetGame();

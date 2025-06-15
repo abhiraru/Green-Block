@@ -20,7 +20,7 @@ const Dino = forwardRef((props, ref) => {
   const jump = () => {
     if (!isJumping && !gameOver) {
       setIsJumping(true);
-      setTimeout(() => setIsJumping(false), 900);
+      setTimeout(() => setIsJumping(false), 1000);
     }
   };
 

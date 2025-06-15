@@ -12,7 +12,7 @@
 }
 
 .dino.jump {
-  animation: jump-animation 0.9s ease-out;
+  animation: jump-animation 1.0s ease-out;
 }
 
 @keyframes jump-animation {

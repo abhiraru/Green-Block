@@ -21,7 +21,7 @@ const Score = () => {
       right: 20,
       fontSize: '24px',
       fontWeight: 'bold',
-      color: 'green',
+      color: 'white',
     }}>
       Score: {score}
     </div>

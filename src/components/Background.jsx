@@ -30,7 +30,7 @@ const Background = () => {
 
   return (
     <div className="background">
-      <div className="ground" />
+      {/* <div className="ground" /> */}
       {clouds.map((cloud) => (
         <div
           key={cloud.id}

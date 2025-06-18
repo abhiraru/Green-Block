@@ -62,3 +62,22 @@ html, body {
     transform: translateX(-50%) scale(1.1);
   }
 }
+.app-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-container {
+  width: 360px;
+  height: 640px;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}

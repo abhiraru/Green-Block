@@ -65,3 +65,26 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-20px); }
 }
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  background-image: url('/landscape.jpg'); /* path relative to public/ */
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: bottom;
+  animation: scroll-bg 10s linear infinite;
+}
+
+/* Scroll effect for background image */
+@keyframes scroll-bg {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -1000px; /* Adjust based on your image width */
+  }
+}

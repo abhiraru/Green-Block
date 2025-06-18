@@ -63,24 +63,26 @@ const App = () => {
   };
 
   return (
-    <div
-      className="game-container"
-      onTouchStart={triggerJump}
-      onClick={triggerJump}
-    >
-      <Background />
-      <Score />
-      <Dino ref={dinoRef} />
-      <Cactus />
-      {milestoneMessage && (
-        <div className="milestone-popup">{milestoneMessage}</div>
-      )}
-      {gameOver && (
-        <div className="game-over-screen">
-          <h1>Game Over</h1>
-          <button onClick={handleRestart}>Restart</button>
-        </div>
-      )}
+    <div className="app-wrapper">
+      <div
+        className="game-container"
+        onTouchStart={triggerJump}
+        onClick={triggerJump}
+      >
+        <Background />
+        <Score />
+        <Dino ref={dinoRef} />
+        <Cactus />
+        {milestoneMessage && (
+          <div className="milestone-popup">{milestoneMessage}</div>
+        )}
+        {gameOver && (
+          <div className="game-over-screen">
+            <h1>Game Over</h1>
+            <button onClick={handleRestart}>Restart</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -23,12 +23,14 @@ body {
 }
 html, body {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden; /* optional: disables vertical scroll if not needed */
-  touch-action: none; /* optional: prevents iOS double-tap zoom & scrolling */
+  overflow: hidden;
+  touch-action: none;
+  background-color: black; /* Ensure background covers entire area */
 }
+
 
 .milestone-popup {
   position: absolute;
@@ -69,15 +71,18 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .game-container {
-  width: 360px;
-  height: 640px;
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-width: 480px; /* Optional: upper limit for tablets */
+  max-height: 100%;
   background-color: transparent;
   border: 2px solid #ccc;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 }

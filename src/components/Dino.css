@@ -1,6 +1,6 @@
 .dino {
   position: absolute;
-  bottom: 20px;
+  bottom: 10%;
   left: 50px;
   width: 40px;
   height: 40px;
@@ -17,21 +17,21 @@
 
 @keyframes jump-animation {
   0% {
-    bottom: 20px;
+    bottom: 10%;
     transform: rotate(0deg);
   }
   25% {
     transform: rotate(90deg);
   }
   50% {
-    bottom: 150px;
+    bottom: 30%;
     transform: rotate(180deg);
   }
   75% {
     transform: rotate(270deg);
   }
   100% {
-    bottom: 20px;
+    bottom: 10%;
     transform: rotate(360deg);
   }
 }

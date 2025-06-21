@@ -31,13 +31,13 @@ const Background = () => {
   return (
     <div className="background">
       {/* <div className="ground" /> */}
-      {clouds.map((cloud) => (
+      {/* {clouds.map((cloud) => (
         <div
           key={cloud.id}
           className="cloud"
           style={{ left: cloud.left, top: cloud.top }}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

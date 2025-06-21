@@ -56,11 +56,15 @@ const Dino = forwardRef((props, ref) => {
 
   // return <div ref={dinoRef} className={`dino ${isJumping ? 'jump' : ''}`} style={isJumping ? { animationDuration: `${jumpDuration}ms` } : {}}></div>;
   return (
+    <>
   <div
     ref={dinoRef}
     className={`dino ${isJumping ? 'jump' : ''} ${gameOver ? 'broken' : ''}`}
     style={isJumping ? { animationDuration: `${jumpDuration}ms` } : {}}
-  ></div>
+  >
+    <div className="hitbox" />
+  </div>
+  </>
 );
 });
 

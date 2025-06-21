@@ -1,11 +1,21 @@
-.cactus {
+/* .cactus {
   position: absolute;
   bottom: 20%;
   width: 15px;
   height: 20px;
   background-color: rgb(249, 3, 3);
   z-index: 2;
+} */
+
+.cactus {
+  position: absolute;
+  bottom: 20%;
+  width: 40px; /* adjust size as needed */
+  height: auto;
+  z-index: 2;
+  pointer-events: none; /* optional: to prevent mouse interaction */
 }
+
 
 .cactus::before {
   content: '';
@@ -17,4 +27,28 @@
   border-left: 7.5px solid transparent;
   border-right: 7.5px solid transparent;
   border-bottom: 10px solid rgb(249, 3, 3);
+}
+
+.cactus-wrapper {
+  position: absolute;
+  bottom: 20%;
+  width: 40px; /* Adjust based on image size */
+  height: 60px;
+  z-index: 2;
+}
+
+.cactus-image {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+
+.hitbox {
+  position: absolute;
+  width: 40%;       /* Size of the hitbox */
+  height: 40%;      /* Adjust as per image shape */
+  left: 30%;        /* Centering the hitbox */
+  bottom: 0;
+  /* background-color: rgb(255, 0, 0); */
 }

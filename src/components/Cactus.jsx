@@ -12,7 +12,8 @@ const Cactus = () => {
   // Spawn a new cactus
   const spawnCactus = () => {
     const id = Date.now();
-    setCactuses((prev) => [...prev, { id, left: 1000 }]);
+    const image = Math.random() < 0.5 ? 'obj1.png' : 'obj2.png';
+    setCactuses((prev) => [...prev, { id, left: 1000, image }]);
   };
 
   // Move all cactuses
@@ -64,20 +65,27 @@ const Cactus = () => {
     const checkCollision = () => {
       if (!dinoRef.current) return;
 
-      const dino = dinoRef.current.getBoundingClientRect();
+      const dinoHitbox = dinoRef.current.querySelector('.hitbox');
+      if (!dinoHitbox) return;
+      const dinoBox = dinoHitbox.getBoundingClientRect();
+
 
       for (let cactus of cactuses) {
-        const cactusElement = document.querySelector(`.cactus[data-id="${cactus.id}"]`);
+        // const cactusElement = document.querySelector(`.cactus[data-id="${cactus.id}"]`);
+        const cactusElement = document.querySelector(
+  `.cactus-wrapper[data-id="${cactus.id}"] .hitbox`
+);
+
         if (!cactusElement) continue;
 
         const cactusBox = cactusElement.getBoundingClientRect();
 
 
         if (
-          dino.left < cactusBox.right &&
-          dino.right > cactusBox.left &&
-          dino.top < cactusBox.bottom &&
-          dino.bottom > cactusBox.top
+           dinoBox.left < cactusBox.right &&
+          dinoBox.right > cactusBox.left &&
+          dinoBox.top < cactusBox.bottom &&
+          dinoBox.bottom > cactusBox.top
         ) {
           setGameOver(true);
         }
@@ -89,16 +97,20 @@ const Cactus = () => {
   }, [cactuses, dinoRef, setGameOver]);
 
   return (
-    <>
-      {cactuses.map((cactus) => (
-        <div
-          key={cactus.id}
-          className="cactus"
-          data-id={cactus.id}
-          style={{ left: cactus.left }}
-        />
-      ))}
-    </>
+   <>
+    {cactuses.map((cactus) => (
+      <div
+        key={cactus.id}
+        className="cactus-wrapper"
+        data-id={cactus.id}
+        style={{ left: cactus.left }}
+      >
+        <div className="hitbox" />
+        <img src={cactus.image} className="cactus-image" alt="cactus" />
+      </div>
+    ))}
+  </>
+
   );
 };
 

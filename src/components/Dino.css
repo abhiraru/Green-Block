@@ -60,3 +60,12 @@
     opacity: 0.8;
   }
 }
+.dino .hitbox {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 60%;
+  height: 60%;
+  /* border: 1px dashed red;  Uncomment for debugging */
+  pointer-events: none; /* Prevents interference with clicks */
+}

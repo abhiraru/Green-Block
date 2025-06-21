@@ -72,7 +72,7 @@
   height: 100%;
   overflow: hidden;
   z-index: 0;
-  background-image: url('/landscape.jpg'); /* path relative to public/ */
+  background-image: url('/landscape.png'); /* path relative to public/ */
   background-repeat: repeat-x;
   background-size: cover;
   background-position: bottom;

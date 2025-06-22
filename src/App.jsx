@@ -7,7 +7,7 @@ import Score from './components/Score';
 import Background from './components/Background';
 
 const App = () => {
-  const { gameOver, resetGame, score } = useGame();
+  const { gameOver, resetGame, score, gameStarted, setGameStarted } = useGame();
   const dinoRef = React.useRef();
   const gameOverSoundRef = React.useRef(null);
   const prevGameOverRef = React.useRef(false);
@@ -52,7 +52,7 @@ const App = () => {
 
   const handleRestart = () => {
     resetGame();
-    window.location.reload();
+    // window.location.reload();
   };
 
   // Trigger jump by calling Dino's jump method
@@ -64,6 +64,14 @@ const App = () => {
 
   return (
     <div className="app-wrapper">
+      { !gameStarted && (
+        <div className="start-screen">
+          <div className="start-background" />
+          <button className="start-button" onClick={() => setGameStarted(true)}>
+            ▶ Play
+          </button>
+        </div>
+      )}
       <div
         className="game-container"
         onTouchStart={triggerJump}

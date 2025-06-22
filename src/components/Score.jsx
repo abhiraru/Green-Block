@@ -2,17 +2,35 @@ import React, { useEffect } from 'react';
 import { useGame } from '../GameContext';
 
 const Score = () => {
-  const { score, setScore, gameOver } = useGame();
+  const { score, setScore, gameOver, gameStarted } = useGame();
 
-  useEffect(() => {
-    if (gameOver) return;
+//   useEffect(() => {
+//     if (gameOver) return;
+// console.log(gameStarted);
 
-    const interval = setInterval(() => {
+//     if(gameStarted){
+//       const interval = setInterval(() => {
+//         setScore((prev) => prev + 1);
+//       }, 200); // Increase every 200ms
+//     }
+
+//     return () => clearInterval(interval);
+//   }, [gameOver, setScore]);
+
+useEffect(() => {
+  if (gameOver) return;
+
+  // console.log(gameStarted);
+  let interval;
+
+  if (gameStarted) {
+    interval = setInterval(() => {
       setScore((prev) => prev + 1);
     }, 200); // Increase every 200ms
+  }
 
-    return () => clearInterval(interval);
-  }, [gameOver, setScore]);
+  return () => clearInterval(interval);
+}, [gameOver, gameStarted, setScore]); // include gameStarted in the dependency array
 
   return (
     <div style={{

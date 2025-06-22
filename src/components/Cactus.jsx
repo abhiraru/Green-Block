@@ -3,11 +3,16 @@ import { useGame } from '../GameContext';
 import './Cactus.css';
 
 const Cactus = () => {
-  const { dinoRef, setGameOver, gameOver, speedRef } = useGame();
+  const { dinoRef, setGameOver, gameOver, speedRef, gameStarted, resetTrigger } = useGame();
   const [cactuses, setCactuses] = useState([]);
   const spawnTimer = useRef(null);
   const moveTimer = useRef(null);
   const spawnIntervalRef = useRef(3000);
+
+  useEffect(() => {
+    setCactuses([]); // Clear all cactuses
+    spawnIntervalRef.current = 3000; // Reset spawn speed
+  }, [resetTrigger]);
 
   // Spawn a new cactus
   const spawnCactus = () => {
@@ -87,6 +92,9 @@ const Cactus = () => {
           dinoBox.top < cactusBox.bottom &&
           dinoBox.bottom > cactusBox.top
         ) {
+          if(!gameStarted)
+            setGameOver(false)
+          else
           setGameOver(true);
         }
       }

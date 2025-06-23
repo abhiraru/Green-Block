@@ -67,7 +67,12 @@ const App = () => {
       { !gameStarted && (
         <div className="start-screen">
           <div className="start-background" />
-          <button className="start-button" onClick={() => setGameStarted(true)}>
+          <button className="start-button" 
+            onClick={() => {
+              resetGame();
+              setGameStarted(true);
+            }}
+          >
             ▶ Play
           </button>
         </div>
